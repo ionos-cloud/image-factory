@@ -48,7 +48,7 @@ def unittest_verbosity():
     """
     Return the verbosity setting of the currently running unittest.
 
-    If no test is running, return None.
+    If no test is running, return 0.
     """
     frame = inspect.currentframe()
     while frame:
@@ -56,4 +56,4 @@ def unittest_verbosity():
         if isinstance(self, unittest.TestProgram):
             return self.verbosity
         frame = frame.f_back
-    return None  # pragma: no cover
+    return 0  # pragma: no cover
