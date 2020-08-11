@@ -1,0 +1,8 @@
+*.1
+debian/*.debhelper.log
+debian/files
+debian/image-factory
+debian/*.substvars
+__pycache__/
+*.tar.xz
+*.tar.xz.asc
