@@ -1,0 +1,42 @@
+Source: image-factory
+Maintainer: Benjamin Drung <benjamin.drung@cloud.ionos.com>
+Section: admin
+Priority: optional
+Build-Depends: debhelper-compat (= 13),
+               dh-python,
+               pandoc,
+               pylint (>= 2.2.2-2~) | pylint3,
+               python3-all,
+               python3-flake8,
+               python3-httplib2,
+               python3-parted
+Rules-Requires-Root: no
+Standards-Version: 4.5.0
+Homepage: https://github.com/ionos-enterprise/image-factory
+Vcs-Browser: https://github.com/ionos-enterprise/image-factory
+Vcs-Git: https://github.com/ionos-enterprise/image-factory.git -b debian/master
+
+Package: image-factory
+Architecture: all
+Depends: libvirt-clients,
+         python3-httplib2,
+         python3-parted,
+         qemu-utils,
+         virtinst (>= 1:2.1),
+         zerofree,
+         ${misc:Depends},
+         ${python3:Depends}
+Recommends: libvirt-daemon
+Description: Image factory for the IONOS customers images
+ image-factory is a command line tool for building golden Linux images. It uses
+ virt-install to do installations via the network. The installation and
+ configuration of the images is done using the netinstall support from the
+ distributions, i.e.
+ .
+  * preseed for Debian/Ubuntu
+  * Kickstart for CentOS/Fedora
+  * AutoYaST for openSUSE
+ .
+ image-factory is used by IONOS Cloud to build the golden public Linux images
+ for their Enterprise Cloud. The configuration files are shipped with this
+ project to allow anyone to rebuild their images.

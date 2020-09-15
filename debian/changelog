@@ -1,0 +1,5 @@
+image-factory (1.0.0-1) unstable; urgency=medium
+
+  * Initial public release (Closes: #970384)
+
+ -- Benjamin Drung <benjamin.drung@cloud.ionos.com>  Tue, 15 Sep 2020 13:12:27 +0200
