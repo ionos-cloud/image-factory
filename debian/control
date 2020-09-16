@@ -27,7 +27,7 @@ Depends: libvirt-clients,
          ${misc:Depends},
          ${python3:Depends}
 Recommends: libvirt-daemon
-Description: Image factory for the IONOS customers images
+Description: Build golden Linux images
  image-factory is a command line tool for building golden Linux images. It uses
  virt-install to do installations via the network. The installation and
  configuration of the images is done using the netinstall support from the
