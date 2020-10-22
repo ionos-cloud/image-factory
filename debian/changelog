@@ -1,3 +1,11 @@
+image-factory (1.0.0-2) unstable; urgency=medium
+
+  * Remove IONOS from short description
+  * Add upstream metadata fields: Bug-Database, Bug-Submit, Repository,
+    Repository-Browse
+
+ -- Benjamin Drung <benjamin.drung@cloud.ionos.com>  Thu, 22 Oct 2020 10:37:18 +0200
+
 image-factory (1.0.0-1) unstable; urgency=medium
 
   * Initial public release (Closes: #970384)
