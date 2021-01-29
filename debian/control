@@ -11,7 +11,7 @@ Build-Depends: debhelper-compat (= 13),
                python3-httplib2,
                python3-parted
 Rules-Requires-Root: no
-Standards-Version: 4.5.0
+Standards-Version: 4.5.1
 Homepage: https://github.com/ionos-enterprise/image-factory
 Vcs-Browser: https://github.com/ionos-enterprise/image-factory
 Vcs-Git: https://github.com/ionos-enterprise/image-factory.git -b debian/master
