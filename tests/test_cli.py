@@ -54,7 +54,7 @@ class TestCLI(unittest.TestCase):
                 ("installer-logs", "True"),
                 ("log-file", "True"),
                 ("ram", "1G"),
-                ("centos_mirror", "rsync://ftp-stud.fht-esslingen.de/centos"),
+                ("centos_mirror", "rsync://mirror2.hs-esslingen.de/centos"),
                 ("debian_mirror", "rsync://ftp.de.debian.org/debian"),
                 ("ubuntu_mirror", "http://de.archive.ubuntu.com/ubuntu"),
                 ("fedora_mirror", "rsync://ftp.fau.de/fedora"),

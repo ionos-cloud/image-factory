@@ -1,6 +1,6 @@
 PREFIX ?= /usr/local
 
-VERSION := 1.0.0
+VERSION := 1.0.1
 DIST := image-factory image-factory.1.md image-factory.conf image_factory.py \
 	image-factory-sudo-helper image-factory-sudo-helper.1.md LICENSE Makefile NEWS README.md \
 	tests/__init__.py tests/pylint.conf tests/test_cli.py tests/test_flake8.py \
