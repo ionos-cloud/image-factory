@@ -1,3 +1,11 @@
+image-factory (1.0.1-1) unstable; urgency=medium
+
+  * New upstream release
+  * Bump Standards-Version to 4.5.1
+  * Upgrade debian/watch to version 4
+
+ -- Benjamin Drung <benjamin.drung@cloud.ionos.com>  Fri, 29 Jan 2021 16:16:43 +0100
+
 image-factory (1.0.0-2) unstable; urgency=medium
 
   * Remove IONOS from short description
