@@ -135,7 +135,7 @@ def cache_file(cache_dir, source):
     elif source.startswith("rsync:"):
         call_command(["rsync", "--no-motd", source, destination])
     else:
-        raise Exception("No download handler for file '{source}' found.".format(source=source))
+        raise Exception(f"No download handler for file '{source}' found.")
     return relative_destination
 
 
@@ -163,7 +163,7 @@ def download_and_publish(config, image, source, filename):
     elif source.startswith("rsync:"):
         call_command(["rsync", "--no-motd", source, destination])
     else:
-        raise Exception("No download handler for file '{source}' found.".format(source=source))
+        raise Exception(f"No download handler for file '{source}' found.")
     return destination
 
 
@@ -175,9 +175,7 @@ def check_one_partition(partitions, image):
     """
     if len(partitions) != 1:
         if partitions:
-            msg = "{n} partitions ({partitions})".format(
-                n=len(partitions), partitions=", ".join(partitions)
-            )
+            msg = f"{len(partitions)} partitions ({', '.join(partitions)})"
         else:
             msg = "no partitions"
         logger = logging.getLogger(__logger_name__)
@@ -194,8 +192,8 @@ def parse_bytes(data):
     match = re.match(r"^([0-9]+)\s*([kMGTPE]?B|[KMGTPE]iB|[KMGTPE])$", data.strip())
     if not match:
         raise ValueError(
-            "Failed to parse bytes from '%s'. Please use SI or binary prefixes "
-            "for bytes (e.g. '2 GB' or '512 MiB')." % (data)
+            f"Failed to parse bytes from '{data}'. "
+            "Please use SI or binary prefixes for bytes (e.g. '2 GB' or '512 MiB')."
         )
 
     value = int(match.group(1))
@@ -229,19 +227,19 @@ def run_installation(config, image, image_name):  # pylint: disable=too-many-loc
     else:
         initrd = cache_file(cache_dir, config.get(image, "initrd"))
         kernel = cache_file(cache_dir, config.get(image, "linux"))
-        location = "{},kernel={},initrd={}".format(cache_dir, kernel, initrd)
+        location = f"{cache_dir},kernel={kernel},initrd={initrd}"
 
     append = config.get(image, "append", fallback="")
     if config.has_option(image, "preseed"):
         initrd_inject = config.get(image, "preseed")
-        append = "preseed/url=file:///{} {}".format(os.path.basename(initrd_inject), append)
+        append = f"preseed/url=file:///{os.path.basename(initrd_inject)} {append}"
     if config.has_option(image, "kickstart"):
         initrd_inject = config.get(image, "kickstart")
-        append = "ks=file:///{} {}".format(os.path.basename(initrd_inject), append)
-        append = "inst.ks=file:///{} {}".format(os.path.basename(initrd_inject), append)
+        append = f"ks=file:///{os.path.basename(initrd_inject)} {append}"
+        append = f"inst.ks=file:///{os.path.basename(initrd_inject)} {append}"
     if config.has_option(image, "yast"):
         initrd_inject = config.get(image, "yast")
-        append = "autoyast=file:///{} {}".format(os.path.basename(initrd_inject), append)
+        append = f"autoyast=file:///{os.path.basename(initrd_inject)} {append}"
 
     network = "user,model=virtio"
     if config.has_option(image, "mac"):
@@ -250,9 +248,9 @@ def run_installation(config, image, image_name):  # pylint: disable=too-many-loc
     graphics = "none"
     if config.has_option(image, "vnc"):
         listen, port = config.get(image, "vnc").split(":")
-        graphics = "vnc,port={}".format(5900 + int(port))
+        graphics = f"vnc,port={5900 + int(port)}"
         if listen:
-            graphics += ",listen={}".format(listen)
+            graphics += f",listen={listen}"
 
     session = get_session()
     cmd = [
@@ -513,7 +511,7 @@ def parse_args(argv):
         help="Image to build (date and suffix will be added).",
     )
     parser.add_argument(
-        "-c", "--cache-dir", help="Cache directory (default: %s)" % (get_default_cache_dir())
+        "-c", "--cache-dir", help=f"Cache directory (default: {get_default_cache_dir()})"
     )
     parser.add_argument(
         "-f", "--format", choices=["qcow2", "raw"], help="Image format to use (default: raw)"
