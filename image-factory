@@ -130,9 +130,8 @@ def cache_file(cache_dir, source):
             logger.info("Copy cached download to %s...", destination)
         else:
             logger.info("Save download to %s...", destination)
-        cached_file = open(destination, "wb")
-        cached_file.write(content)
-        cached_file.close()
+        with open(destination, "wb") as cached_file:
+            cached_file.write(content)
     elif source.startswith("rsync:"):
         call_command(["rsync", "--no-motd", source, destination])
     else:
@@ -159,9 +158,8 @@ def download_and_publish(config, image, source, filename):
             logger.info("Copy cached download to %s...", destination)
         else:
             logger.info("Save download to %s...", destination)
-        cached_file = open(destination, "wb")
-        cached_file.write(content)
-        cached_file.close()
+        with open(destination, "wb") as cached_file:
+            cached_file.write(content)
     elif source.startswith("rsync:"):
         call_command(["rsync", "--no-motd", source, destination])
     else:
@@ -297,6 +295,7 @@ def run_installation(config, image, image_name):  # pylint: disable=too-many-loc
 
 
 def open_as_user(filename):
+    # pylint: disable=consider-using-with
     try:
         fileobject = open(filename)
     except IOError as error:
@@ -398,8 +397,8 @@ def post_installation(script_name, image, print_installer_logs):
     try:
         cmd = [LOSETUP, "-o", str(offset), "--show", "-f", image]
         logger.info("Calling %s", " ".join(cmd))
-        process = subprocess.Popen(cmd, stdout=subprocess.PIPE)
-        loopdev = process.communicate()[0].decode().strip()
+        with subprocess.Popen(cmd, stdout=subprocess.PIPE) as process:
+            loopdev = process.communicate()[0].decode().strip()
 
         tmpdir = tempfile.mkdtemp(prefix=script_name + ".")
         call_command(["mount", loopdev, tmpdir], as_root=True)
@@ -424,11 +423,11 @@ def post_installation(script_name, image, print_installer_logs):
 def create_hashsum(image):
     logger = logging.getLogger(__logger_name__)
     logger.info("Calculating SHA 256 sum of %s...", image)
-    sha256_sum = hashlib.sha256(open(image, "rb").read()).hexdigest()
+    with open(image, "rb") as image_file:
+        sha256_sum = hashlib.sha256(image_file.read()).hexdigest()
     logger.info("SHA 256 sum of %s: %s", image, sha256_sum)
-    checksum_file = open(image + ".sha256sum", "w")
-    checksum_file.write(sha256_sum + "  " + image + "\n")
-    checksum_file.close()
+    with open(image + ".sha256sum", "w") as checksum_file:
+        checksum_file.write(sha256_sum + "  " + image + "\n")
 
 
 def create_qcow2(image, keep_raw_image):
