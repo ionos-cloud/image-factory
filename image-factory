@@ -294,14 +294,14 @@ def run_installation(config, image, image_name):  # pylint: disable=too-many-loc
         call_command(["virsh", "-c", session, "undefine", image_name])
 
 
-def open_as_user(filename):
+def open_as_user(filename, encoding):
     # pylint: disable=consider-using-with
     try:
-        fileobject = open(filename)
+        fileobject = open(filename, encoding=encoding)
     except IOError as error:
         if error.errno == errno.EACCES:
             call_command(["chmod", "o+r", filename], as_root=True)
-            fileobject = open(filename)
+            fileobject = open(filename, encoding=encoding)
         else:
             raise
     return fileobject
@@ -361,7 +361,7 @@ def remove_logs(tmpdir, print_installer_logs):
         if print_installer_logs:
             logger = logging.getLogger(__logger_name__)
             for installer_log in installer_logs:
-                content = open_as_user(installer_log).read()
+                content = open_as_user(installer_log, encoding="utf-8").read()
                 logger.info("Content of /%s:\n%s", os.path.relpath(installer_log, tmpdir), content)
 
         # Remove installer logs
@@ -426,7 +426,7 @@ def create_hashsum(image):
     with open(image, "rb") as image_file:
         sha256_sum = hashlib.sha256(image_file.read()).hexdigest()
     logger.info("SHA 256 sum of %s: %s", image, sha256_sum)
-    with open(image + ".sha256sum", "w") as checksum_file:
+    with open(image + ".sha256sum", "w", encoding="utf-8") as checksum_file:
         checksum_file.write(sha256_sum + "  " + image + "\n")
 
 
