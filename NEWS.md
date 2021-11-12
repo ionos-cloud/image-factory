@@ -1,8 +1,10 @@
 image-factory 1.0.1 (2021-01-29)
+================================
 
 * Update example CentOS 7 mirror URL (old URL does not work any more)
 * Increase CentOS 7 image size from 2 GiB to 3 GiB
 
 image-factory 1.0.0 (2020-08-11)
+================================
 
 * Initial release
