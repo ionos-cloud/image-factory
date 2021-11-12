@@ -17,6 +17,7 @@
 import configparser
 import os
 import unittest
+import unittest.mock
 
 from image_factory import get_config, override_configs_by_args, parse_args
 
@@ -26,6 +27,7 @@ class TestCLI(unittest.TestCase):
     This unittest class tests command-line related functions from image-factory.
     """
 
+    @unittest.mock.patch("os.getuid", unittest.mock.MagicMock(return_value=1000))
     def test_empty_config(self):
         """Test empty configuration file."""
         args = parse_args(["Debian-10-server"])
@@ -36,6 +38,7 @@ class TestCLI(unittest.TestCase):
             config.items("Debian-10-server"), [("cache_dir", "~/.cache/image-factory")]
         )
 
+    @unittest.mock.patch("os.getuid", unittest.mock.MagicMock(return_value=1000))
     def test_example_config(self):
         """Test exapmle image-factory.conf file."""
         config_file = os.path.join(os.path.dirname(__file__), "..", "image-factory.conf")
