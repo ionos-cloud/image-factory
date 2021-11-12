@@ -52,4 +52,4 @@ executed but printed instead.
 
 # AUTHOR
 
-Benjamin Drung <benjamin.drung@cloud.ionos.com>
+Benjamin Drung <benjamin.drung@ionos.com>

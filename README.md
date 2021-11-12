@@ -55,7 +55,9 @@ pandoc is needed to generate the man page.
 
 The test cases have additional requirements:
 
+* black
 * flake8
+* isort
 * pylint
 
 Permissions
@@ -111,10 +113,10 @@ Creating releases
 =================
 
 To create a release, increase the version in `Makefile`, document the
-noteworthy changes in `NEWS`, and commit and tag the release:
+noteworthy changes in [NEWS.md](./NEWS.md), and commit and tag the release:
 
 ```sh
-git commit -s -m "Release image-factory $(make version)" Makefile NEWS
+git commit -s -m "Release image-factory $(make version)" Makefile NEWS.md
 git tag "$(make version)" -m "Release image-factory $(make version)"
 ```
 
