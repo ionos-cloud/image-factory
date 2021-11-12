@@ -206,4 +206,4 @@ qemu-img(1), virt-install(1), zerofree(8)
 
 # AUTHOR
 
-Benjamin Drung <benjamin.drung@cloud.ionos.com>
+Benjamin Drung <benjamin.drung@ionos.com>
