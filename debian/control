@@ -2,8 +2,10 @@ Source: image-factory
 Maintainer: Benjamin Drung <benjamin.drung@ionos.com>
 Section: admin
 Priority: optional
-Build-Depends: debhelper-compat (= 13),
+Build-Depends: black,
+               debhelper-compat (= 13),
                dh-python,
+               isort,
                pandoc,
                pylint (>= 2.2.2-2~) | pylint3,
                python3-all,
