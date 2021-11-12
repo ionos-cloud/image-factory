@@ -1,3 +1,12 @@
+image-factory (1.0.2-1) unstable; urgency=medium
+
+  * New upstream release
+    - Fix issues found by pylint 2.11.1 (Closes: #998571)
+  * Bump Standards-Version to 4.6.0
+  * Add black and isort to build dependencies
+
+ -- Benjamin Drung <benjamin.drung@ionos.com>  Fri, 12 Nov 2021 16:52:40 +0100
+
 image-factory (1.0.1-1) unstable; urgency=medium
 
   * New upstream release
