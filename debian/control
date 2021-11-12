@@ -1,5 +1,5 @@
 Source: image-factory
-Maintainer: Benjamin Drung <benjamin.drung@cloud.ionos.com>
+Maintainer: Benjamin Drung <benjamin.drung@ionos.com>
 Section: admin
 Priority: optional
 Build-Depends: debhelper-compat (= 13),
