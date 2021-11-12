@@ -55,6 +55,7 @@ pandoc is needed to generate the man page.
 
 The test cases have additional requirements:
 
+* black
 * flake8
 * pylint
 
