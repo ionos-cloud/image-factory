@@ -18,7 +18,7 @@ import configparser
 import os
 import unittest
 
-from image_factory import get_config, parse_args, override_configs_by_args
+from image_factory import get_config, override_configs_by_args, parse_args
 
 
 class TestCLI(unittest.TestCase):

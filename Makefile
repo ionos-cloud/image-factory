@@ -4,7 +4,7 @@ VERSION := 1.0.1
 DIST := image-factory image-factory.1.md image-factory.conf image_factory.py \
 	image-factory-sudo-helper image-factory-sudo-helper.1.md LICENSE Makefile NEWS README.md \
 	tests/__init__.py tests/pylint.conf tests/test_black.py tests/test_cli.py tests/test_flake8.py \
-	tests/test_helper.py tests/test_pylint.py tests/test_sudo_helper.py \
+	tests/test_helper.py tests/test_isort.py tests/test_pylint.py tests/test_sudo_helper.py \
 	$(wildcard data/*.cfg) $(wildcard data/*.xml)
 
 all: doc

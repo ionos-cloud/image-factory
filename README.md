@@ -57,6 +57,7 @@ The test cases have additional requirements:
 
 * black
 * flake8
+* isort
 * pylint
 
 Permissions
