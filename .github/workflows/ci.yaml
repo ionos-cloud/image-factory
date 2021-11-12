@@ -1,0 +1,56 @@
+---
+name: CI
+
+on:  # yamllint disable-line rule:truthy
+  - push
+  - pull_request
+
+jobs:
+  unittest:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        container:
+          - debian:bullseye
+          - debian:testing
+          - debian:unstable
+          - ubuntu:focal
+          - ubuntu:hirsute
+          - ubuntu:impish
+          - ubuntu:latest
+          - ubuntu:rolling
+    container:
+      image: ${{ matrix.container }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: >
+          apt-get update &&
+          apt-get install --yes black isort pylint python3 python3-coverage
+          python3-flake8 python3-httplib2 python3-parted
+      - name: Run unit tests
+        run: |
+          python3 -m coverage run -m unittest discover -v
+          python3 -m coverage xml
+      - name: Install dependencies for Codecov
+        run: apt-get install --yes curl git
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          fail_ci_if_error: true
+          functionalities: gcov
+
+  yamllint:
+    runs-on: ubuntu-latest
+    container:
+      image: debian:testing
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          apt-get update
+          apt-get install --yes --no-install-recommends yamllint
+      - name: Run yamllint
+        run: |
+          yamllint .
