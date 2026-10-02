@@ -1,6 +1,10 @@
 image-factory
 =============
 
+> **Note:** This repository builds golden **Linux VM images**. It is not to
+> be confused with a separate, internal IONOS project that builds CVE-free
+> **container images** of upstream open-source projects.
+
 image-factory is a command line tool for building golden Linux images. It uses
 virt-install to do installations via the network. The installation and
 configuration of the images is done using the netinstall support from the
